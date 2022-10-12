@@ -35,6 +35,7 @@ void	*upload_msg_to_que(void	*value)
 			}
 			if (curr->next != NULL)
 				curr = curr->next;
+			printf("sent message to message queue\n");
 			wait_nbr_sec(std_time, 2);
 			i++;
 		}
@@ -89,14 +90,13 @@ int	main(void)
 				head = add_buffer(shm_buff->message);
 				pthread_create(&uploader, NULL, &upload_msg_to_que, (void *) head);
 				buffer = head;
-				printf("received message from shared memory %d\n", i);
 			}
 			else
 			{
 				buffer->next = add_buffer(shm_buff->message);
 				buffer = buffer->next;
-				printf("received message from shared memory %d\n", i);
 			}
+			printf("received message from shared memory\n");
 		}
 		i++;
 	}
