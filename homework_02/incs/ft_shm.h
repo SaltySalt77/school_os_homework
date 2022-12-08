@@ -20,7 +20,6 @@ typedef struct s_values
 {
 	int				semid;
 	t_shm_buff		*buff;
-	pthread_mutex_t	add;
 } t_values;
 
 
