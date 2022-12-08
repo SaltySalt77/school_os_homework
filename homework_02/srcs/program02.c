@@ -15,7 +15,9 @@ int  main(void)
 		buff->nbr += 1;
         s_signal(semid);
     }
+	s_wait(semid);
 	printf("Result : %d\n", buff->nbr);
+	s_signal(semid);
 	if (shmdt(shmaddr) == -1)
 		perror("shmdt ");
 	return (0);

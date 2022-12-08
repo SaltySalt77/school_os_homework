@@ -30,7 +30,9 @@ int  main(void)
 		pthread_create(id + i, NULL, &add_1_to_shm, (void *) values);
 	for (int i = 0; i < 2; i++)
 		pthread_join(id[i], NULL);
+	s_wait(values->semid);
 	printf("Result : %d\n", values->buff->nbr);
+	s_signal(values->semid);
 	if (shmdt((void *) values->buff) == -1)
 		perror("shmdt ");
 	free(values);
